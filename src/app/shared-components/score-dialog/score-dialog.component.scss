@@ -1,0 +1,33 @@
+mat-slider {
+    width: 300px;
+  }
+  .mat-dialog-content {
+    max-height: 100vh;
+  }
+  ::ng-deep .mat-slider-wrapper {
+    .mat-slider-thumb-container {
+      .mat-slider-thumb-label {
+        width: 50px;
+        height: 50px;
+        top: -62px;
+        right: -25px;
+      }
+    }
+  }
+
+  .cn {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+  }
+
+  .mat-dialog-actions {
+    padding: 8px 0;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 52px;
+    align-items: center;
+    box-sizing: content-box;
+    margin-bottom: -24px;
+    justify-content: space-evenly;
+}

@@ -1,0 +1,61 @@
+.example-chip-list {
+  width: 100%;
+  justify-content: center;
+}
+
+.example-button-container>button {
+  margin: 0 12px;
+}
+
+:host /deep/ .mat-select-value-text {
+  color: green !important;
+}
+
+.not-empty-select {
+  background-color: wheat !important;
+  border-color: #F6A030 !important;
+}
+
+.not-empty-select.mat-option:hover {
+  background: wheat !important;
+  color: green !important;
+}
+
+/* Border */
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #F6A030;
+}
+
+
+::ng-deep .mat-form-field-underline, ::ng-deep .mat-form-field-ripple {
+  background-color: #F6A030 !important;
+}
+
+.flex-container-filter {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.flex-container-filter > div {
+  text-align: center;
+  margin: 5px;
+}
+
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.content {
+  padding: 16px;
+}
+
+.column-label {
+  margin-right: 8px;
+  font-size: 1rem;
+}

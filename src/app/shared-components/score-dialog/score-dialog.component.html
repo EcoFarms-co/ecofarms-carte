@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Veuillez selectionner le score</h1>
+<div class="cn">
+  <div>
+    <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1000" step="10" min="0" max="100"
+      aria-label="units" (change)="updateSetting($event)">
+    </mat-slider>
+  </div>
+  <div>
+    {{score}}
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="onNoClick(true)">Confimer</button>
+  <button mat-raised-button color="warn" (click)="onNoClick(false)">Annuler</button>
+</div>
+<!-- 
+<div mat-dialog-content class="left-middle">
+  Confirmez-vous la suppression de {{nomFichier}} ?
+</div>
+
+<div class="right">
+  <button mat-raised-button color="warn" (click)="onNoClick(true)">Oui</button><br><br>
+  <button mat-raised-button (click)="onNoClick(false)">Non</button>
+</div> -->

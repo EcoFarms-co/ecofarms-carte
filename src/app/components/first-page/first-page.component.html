@@ -1,0 +1,96 @@
+<div class="container">
+
+    <div class="center-align" style="margin-top: 50px;">
+        <img src="/assets/farmer.ice.png" alt="fermier illustration" width="70" />
+
+        <h5> <b><span style="color: #F6A030;">La carte </span>EcoFarms </b> </h5>
+
+        <h5 style="margin-top: 40px;">Découvrez les agriculteurs <br />
+            <span style="color: #F6A030;">en accord avec vos valeurs et à côté de vous !</span>
+        </h5>
+        <h6 style="margin-top: 40px;">Où êtes vous ? </h6>
+
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <mat-label>Région</mat-label>
+                <input type="text" placeholder="Veuillez choisir la région souhaité" aria-label="Region" matInput
+                    [formControl]="region" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let reg of filteredRegions | async" [value]="reg">
+                        {{reg}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            &nbsp;
+        </form>
+        <button mat-raised-button color="primary" (click)="onFormSubmit()">Rechercher</button>
+
+    </div>
+
+    <div class="row" style="margin-top: 80px;">
+
+        <div class="col xs12 s12 m12 l4">
+            <img src="/assets/gardener.png" alt="agriculteur engagés" width="50">
+            <h6><b>Des agriculteurs <br /> <span style="color: #F6A030;">engagés</span></b></h6>
+            <div>
+                <b>Maraîchers, Arboriculteurs, Viticulteurs, <br />Apiculteurs, ...</b>
+            </div>
+        </div>
+
+        <div class="col xs12 s12 m12 l4">
+            <img src="/assets/sprout.png" alt="sprout" width="50">
+            <h6><b>Des exploitations <br /> <span style="color: #F6A030;">responsables et transparentes</span></b></h6>
+            <div>Une ecofarm est une exploitation <br>agricole qui répond à<b> des seuils de <br>durabilité élevés et
+                    engagés dans une <br>démarche de progrès. </b></div>
+        </div>
+
+        <div class="col xs12 s12 m12 l4">
+            <img src="/assets/apple_heart.png" alt="apple heart" width="50">
+
+            <h6><b>Les impacts <br /> <span style="color: #F6A030;">sur le monde</span></b></h6>
+            <div>
+                On vous aide à <b>choisir les agriculteurs <br>en accord avec vos convictions.</b>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="center-align" style="margin-top: 80px; margin-bottom:80px">
+        <img src="/assets/logoRondTransparent.png" alt="ecofarms logo" width="50" />
+        <h5><b> Pourquoi EcoFarms propose cette carte ? <br /></b></h5>
+        <p>EcoFarms répond au besoin des <b>agriculteurs d’être mieux valorisés pour leurs engagements</b> et à celui
+            des
+            <b>consommateurs d’avoir une consommation éclairée et responsable.</b>
+        </p>
+        <div class="row">
+            <div class="col xs12 s12 m6 l6">
+                <p class="left-align">
+                    L’un des <b>problèmes principaux de notre système
+                        agroalimentaire est son opacité.</b>
+                    S’appuyant sur une prolifération de labels et de
+                    généralités trompeuses, il est bien souvent compliqué de
+                    connaître les véritables impacts des produits que l’on
+                    achète.
+                </p>
+            </div>
+            <div class="col xs12 s12 m6 l6">
+                <p class="left-align">
+                    <b><span style="color: #F6A030;">La carte </span>EcoFarms </b> est un moteur de recherche qui
+                    permet de <b>découvrir et comprendre l’histoire et les
+                        impacts des exploitations agricoles </b>référencées. Les
+                    résultats sont issus de l’évaluation experte et
+                    indépendante que nous faisons de celles-ci.
+                </p>
+            </div>
+
+
+        </div>
+
+        <a href="https://ecofarms.co/" class="btn waves-effect waves-light green lighten-2"
+            style="border-radius: 22px;">
+            Découvrir EcoFarms
+        </a>
+    </div>
+
+
+</div>
