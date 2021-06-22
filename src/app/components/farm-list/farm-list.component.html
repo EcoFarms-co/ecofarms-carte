@@ -53,7 +53,8 @@
             <mat-form-field appearance="outline">
                 <mat-label>Réseaux</mat-label>
                 <mat-select formControlName="reseaux" (selectionChange)="manageChips($event.value,'reseau')" multiple>
-                    <mat-option class="not-empty-select" *ngFor="let reseau of reseaux$ | async" [value]="reseau.name">{{reseau.name}}
+                    <mat-option class="not-empty-select" *ngFor="let reseau of reseaux$ | async" [value]="reseau.name">
+                        {{reseau.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -78,28 +79,28 @@
     </div>
 
     <div fxLayout="row">
-        <div fxLayout="row wrap" fxLayoutGap="16px grid" style="justify-content: center">
-            <div fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let member of farms">
-                <mat-card (click)="goToFarmDetails(member._id)" class="mat-elevation-z4">
-                    <mat-card-header>
-                        <mat-card-title>{{member.name}}</mat-card-title>
-                        <mat-card-subtitle><span style="color: #F6A030;font-weight: bold;"> {{member.score}} /
-                                100</span></mat-card-subtitle>
-                    </mat-card-header>
-                    <img mat-card-image *ngIf="member.photo && member.photo.imageBase64"
-                        [src]="sanitizer.bypassSecurityTrustResourceUrl('data:image/jpeg;base64,' + member.photo.imageBase64)"
-                        alt="Photo of {{member.title}}">
-                    <mat-card-content>
-                        <p>
-                            {{member.description}}
-                        </p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                        <button mat-button>LIKE</button>
-                        <button mat-button>SHARE</button>
-                    </mat-card-actions>
-                </mat-card>
-            </div>
+        <div fxLayout="row wrap" fxLayoutGap="16px" class="align">
+            <mat-card fxFlex.lg="0 1 calc(33% - 16px)"
+            fxFlex.lt-lg="calc(50% - 16px)" *ngFor="let member of farms"
+                fxFlex.xs="calc(100% - 16px)" (click)="goToFarmDetails(member._id)">
+                <mat-card-header>
+                    <mat-card-title>{{member.name}}</mat-card-title>
+                    <mat-card-subtitle><span style="color: #F6A030;font-weight: bold;"> {{member.score}} /
+                            100</span></mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image *ngIf="member.photo && member.photo.imageBase64"
+                    [src]="sanitizer.bypassSecurityTrustResourceUrl('data:image/jpeg;base64,' + member.photo.imageBase64)"
+                    alt="Photo of {{member.title}}">
+                <mat-card-content>
+                    <p>
+                        {{member.description}}
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button>LIKE</button>
+                    <button mat-button>SHARE</button>
+                </mat-card-actions>
+            </mat-card>
         </div>
         <div fxFlex="50" style="padding: 2%;">
             <google-map height="600px"></google-map>

@@ -83,7 +83,7 @@ export class FarmListComponent implements OnInit {
 
 
 
-  filterForm : FormGroup;
+  filterForm: FormGroup;
   cardValues$: Observable<any[]>;
   reseaux$: Observable<any[]>;
   oldScore: string;
@@ -119,8 +119,9 @@ export class FarmListComponent implements OnInit {
   }
 
   private handleChipsOnInit() {
-    if (this.sessionStorage.getItem(Globals.SEARCH_FORM_STATE_KEY)) {
-      Object.entries(JSON.parse(this.sessionStorage.getItem(Globals.SEARCH_FORM_STATE_KEY))).forEach(val => {
+    const sessionSearchKey = this.sessionStorage.getItem(Globals.SEARCH_FORM_STATE_KEY);
+    if (sessionSearchKey && Array.isArray(Object.entries(JSON.parse(sessionSearchKey)))) {
+      Object.entries(JSON.parse(sessionSearchKey)).forEach(val => {
         if (Array.isArray(val[1])) {
           val[1].forEach(v => {
             this.keywords.add(v);

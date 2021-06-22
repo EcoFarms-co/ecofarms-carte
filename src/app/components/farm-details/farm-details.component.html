@@ -1,3 +1,41 @@
-<p>
-    nouvelle page des detail des fermes
-</p>
+<div fxLayout="row" style="justify-content: space-around">
+
+    <div style="justify-content: center">
+        first DIV
+    </div>
+
+    <div style="justify-content: center">
+        <mat-card class="mat-elevation-z4">
+            <mat-card-header>
+                <mat-card-title>Indice de durabilité</mat-card-title>
+                <mat-card-subtitle>
+                    <div class="appreciation center-align farm-logo"
+                        style="margin: auto; width: 120px; height: 120px; border-radius: 200px; border-style:solid; border-width:4px; border-color:#F6A030;">
+                        <br>
+                        <span style="color: #F6A030;font-weight: bold;"> /100</span>
+                        <!-- <div class="appreciation ">
+                                Bon
+                            </div> -->
+                    </div>
+                    <div>
+                        <mat-progress-bar class="example-margin" [color]="'primary'" [bufferValue]="20" [mode]="'buffer'" [value]="50">
+                        </mat-progress-bar>
+                    </div>
+                </mat-card-subtitle>
+            </mat-card-header>
+            <!-- <img mat-card-image *ngIf="member.photo && member.photo.imageBase64"
+                [src]="sanitizer.bypassSecurityTrustResourceUrl('data:image/jpeg;base64,' + member.photo.imageBase64)"
+                alt="Photo of {{member.title}}"> -->
+            <mat-card-content>
+                <p>
+                    Description
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>LIKE</button>
+                <button mat-button>SHARE</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+</div>

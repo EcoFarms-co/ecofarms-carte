@@ -24,14 +24,16 @@ import { MatInputModule } from '@angular/material/input';
 import { FarmListComponent } from './components/farm-list/farm-list.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatCardModule} from '@angular/material/card';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { GoogleMapsModule } from '@angular/google-maps';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
 import { FarmDetailsComponent } from './components/farm-details/farm-details.component';
 import { ScoreDialogComponent } from './shared-components/score-dialog/score-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatSliderModule} from '@angular/material/slider';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,9 @@ import {MatSliderModule} from '@angular/material/slider';
     FlexLayoutModule,
     GoogleMapsModule,
     MatDialogModule,
-    MatSliderModule
+    MatSliderModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

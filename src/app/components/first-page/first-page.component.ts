@@ -14,7 +14,6 @@ import { ApiService } from 'src/app/service/api.service';
 export class FirstPageComponent implements OnInit {
 
   sessionStorage = sessionStorage;
-  readonly filterRecherche = "filterRecherche";
   region = new FormControl();
   regionList: string[] = ['Auvergne-Rhône-Alpes',
     'Bourgogne-Franche-Comté',
@@ -49,7 +48,8 @@ export class FirstPageComponent implements OnInit {
 
   onFormSubmit() {
     // var currentFilterVal: any = JSON.parse(this.sessionStorage.getItem(Globals.SEARCH_FORM_STATE_KEY));
-    this.sessionStorage.setItem(Globals.SEARCH_FORM_STATE_KEY, this.region.value);
+    let regionToSend = { region: this.region.value };
+    this.sessionStorage.setItem(Globals.SEARCH_FORM_STATE_KEY, JSON.stringify(regionToSend));
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['fermes']);
     });
