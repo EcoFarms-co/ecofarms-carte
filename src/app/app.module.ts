@@ -7,8 +7,6 @@ import { AppComponent } from './app.component';
 import { EmployeeCreateComponent } from './components/employee-create/employee-create.component';
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 import { EmployeeEditComponent } from './components/employee-edit/employee-edit.component';
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ApiService } from './service/api.service';
@@ -36,6 +34,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {NgbTooltip, NgbDropdown} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FirstPageComponent,
     FarmListComponent,
     FarmDetailsComponent,
-    ScoreDialogComponent
+    ScoreDialogComponent,
+    NgbTooltip,
+    NgbDropdown
   ],
   imports: [
     FormsModule,

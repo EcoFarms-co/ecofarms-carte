@@ -1,10 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-farm-details',
   templateUrl: './farm-details.component.html',
+  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./farm-details.component.css']
 })
 export class FarmDetailsComponent implements OnInit, OnDestroy {
@@ -24,15 +25,13 @@ export class FarmDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
    this.apiService.getFarmDetails(this.myParam).subscribe((farm: any) => {
-      console.log("the farm detail gives ", farm);
       this.farm = farm;
       this.scoreProgress = farm.score ? farm.score : 0;
       this.bufferProgress = 100 - this.scoreProgress;
     },
     (error) => console.log("error occured when retreiving farm details ", error));
 
-    this.apiService.getScoreDimensionByIdFarm("602be0b7adeb2207b4f532e1").subscribe((scoreDimension: any) => {
-      console.log("the score dimension detail gives ", scoreDimension);
+    this.apiService.getScoreDimensionByIdFarm(this.myParam).subscribe((scoreDimension: any) => {
       this.scoreDimension = scoreDimension;
     },
     (error) => console.log("error occured when retreiving score dimension details ", error));
@@ -40,7 +39,7 @@ export class FarmDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+    //throw new Error('Method not implemented.');
   }
 
 }

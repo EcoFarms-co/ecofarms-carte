@@ -2,6 +2,8 @@ mat-card {
     max-width: 500px;
 }
 
+
+
 .right {
     text-align: right;
     margin-right: 1em;
@@ -18,3 +20,10 @@ mat-card {
     text-align: center;
     line-height: 6;
 }
+.my-custom-class .tooltip-inner {
+    background-color: darkgreen;
+    font-size: 100%;
+  }
+  .my-custom-class .arrow::before {
+    border-top-color: darkgreen;
+  }

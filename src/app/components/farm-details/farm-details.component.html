@@ -7,17 +7,10 @@
             <mat-card-subtitle>{{farm?.region}}
             </mat-card-subtitle>
             <mat-card-content>
-                <div class="col">
-                    <div ngbDropdown class="d-inline-block">
-                        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle
-                            dropdown</button>
-                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                            <button ngbDropdownItem>Action - 1</button>
-                            <button ngbDropdownItem>Another Action</button>
-                            <button ngbDropdownItem>Something else is here</button>
-                        </div>
-                    </div>
-                </div>
+                <button type="button" class="btn btn-outline-secondary mr-2" placement="bottom"
+                    ngbTooltip="Tooltip on top">
+                    Tooltip on top
+                </button>
             </mat-card-content>
         </mat-card>
 
@@ -100,16 +93,11 @@
                                 Bon
                             </div> -->
                     </div>
+                    &nbsp;
                     <div>
-                        <mat-progress-bar placement="top" ngbTooltip="Tooltip on top" [color]="'warn'"
-                            [bufferValue]="bufferProgress" [mode]="'buffer'" [value]="scoreProgress">
+                        <mat-progress-bar placement="top" tooltipClass="my-custom-class" ngbTooltip="score minimale EcoFarms est 40, Score de la ferme {{farm?.score}}" [color]="'warn'"
+                            [bufferValue]="40" [mode]="'buffer'" [value]="scoreProgress">
                         </mat-progress-bar>
-                    </div>
-                    <div>
-                        <button type="button" class="btn btn-outline-secondary mr-2" placement="bottom"
-                            ngbTooltip="Tooltip on top">
-                            Tooltip on top
-                        </button>
                     </div>
                 </mat-card-subtitle>
             </mat-card-header>

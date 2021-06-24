@@ -3,3 +3,6 @@ Modif: dans angular.json partie styles j'ai enlevé
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
                "src/theme.scss",
+
+               rajout de 
+               npm config set legacy-peer-deps true
