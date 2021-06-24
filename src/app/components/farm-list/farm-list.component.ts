@@ -98,12 +98,12 @@ export class FarmListComponent implements OnInit {
     var curState = this.sessionStorage.getItem(Globals.SEARCH_FORM_STATE_KEY);
 
     this.filterForm = this.formBuilder.group({
-      region: [],
-      activities: [],
-      productions: [],
-      reseaux: [],
-      ventesDirectes: [],
-      score: []
+      region: [''],
+      activities: [''],
+      productions: [''],
+      reseaux: [''],
+      ventesDirectes: [''],
+      score: ['']
     });
     this.reseaux$ = this.apiService.loadReseaux();
   }
@@ -148,6 +148,8 @@ export class FarmListComponent implements OnInit {
       if (!`${toSend[key]}`)
         delete toSend[key];
     }
+    console.log("filter toSend ", toSend);
+    console.log("JSON.stringify(this.filterForm.value) ", JSON.stringify(this.filterForm.value));
     this.sessionStorage.setItem(Globals.SEARCH_FORM_STATE_KEY, JSON.stringify(this.filterForm.value));
     this.apiService.getFarmsByFilters(toSend).subscribe(farms => {
       this.farms = farms;

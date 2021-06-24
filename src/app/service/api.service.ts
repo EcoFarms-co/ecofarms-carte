@@ -88,6 +88,26 @@ export class ApiService {
     )
   }
 
+  getFarmDetails(farmId: any): Observable<any> {
+    let params = new HttpParams().set('id', farmId);
+    let url = `${this.baseUri}/farms/${farmId}`;
+    console.log('farmId sent to the back ', farmId);
+    return this.http.get(url, { params: params }).pipe(
+      catchError(this.errorMgmt)
+    )
+  }
+
+  getScoreDimensionByIdFarm(farmId: any): Observable<any> {
+    let params = new HttpParams().set('id', farmId);
+
+    let url = `${this.baseUri}/farm/${farmId}/score-dimensions`;
+    console.log('farmId sent to the back to retreive score dimension ', farmId);
+    return this.http.get(url, { params: params }).pipe(
+      catchError(this.errorMgmt)
+    )
+  }
+
+
   loadReseaux(): Observable<any>{
     return this.http.get(`${this.baseUri}/reseaux`).pipe(catchError(this.errorMgmt));
   }

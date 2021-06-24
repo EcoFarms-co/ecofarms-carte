@@ -1,29 +1,31 @@
-<div fxLayout="row" style="justify-content: space-around">
+<div fxLayout="row" style="justify-content: space-evenly">
     <div fxLayout="column" style="justify-content: space-around" fxLayoutGap="10px">
         <!-- (click)="goToFarmDetails(member._id)" *ngFor="let member of farms" -->
 
         <mat-card>
-            <mat-card-title>Le nom de la ferme</mat-card-title>
-            <mat-card-subtitle>sous titre</mat-card-subtitle>
+            <mat-card-title>{{farm?.name}}</mat-card-title>
+            <mat-card-subtitle>{{farm?.region}}
+            </mat-card-subtitle>
+            <mat-card-content>
+                <div class="col">
+                    <div ngbDropdown class="d-inline-block">
+                        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle
+                            dropdown</button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <button ngbDropdownItem>Action - 1</button>
+                            <button ngbDropdownItem>Another Action</button>
+                            <button ngbDropdownItem>Something else is here</button>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
         </mat-card>
 
         <mat-card>
             <mat-card-title><span style="color: #F6A030;">Présentation par EcoFarms</span>
             </mat-card-title>
             <mat-card-content>
-                <mat-accordion>
-                    <mat-expansion-panel hideToggle>
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                This is the expansion title
-                            </mat-panel-title>
-                            <mat-panel-description>
-                                This is a summary of the content
-                            </mat-panel-description>
-                        </mat-expansion-panel-header>
-                        <p>This is the primary content of the panel.</p>
-                    </mat-expansion-panel>
-                </mat-accordion>
+                {{farm?.description}}
             </mat-card-content>
         </mat-card>
 
@@ -38,28 +40,28 @@
                     </mat-expansion-panel-header>
                     <table>
                         <tr>
-                            <td>Surface</td>
+                            <td><b>Surface</b></td>
+                            <td> {{farm?.surface}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Cultures</b></td>
+                            <td> {{farm?.cultures}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Nombre d'employés </b></td>
+                            <td>{{farm?.employees}} </td>
+                        </tr>
+                        <tr>
+                            <td><b>Activités</b></td>
+                            <td> {{farm?.activities}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>EcoFarm</b></td>
                             <td> </td>
                         </tr>
                         <tr>
-                            <td>Cultures</td>
-                            <td> </td>
-                        </tr>
-                        <tr>
-                            <td>Nombre d'employés</td>
-                            <td> </td>
-                        </tr>
-                        <tr>
-                            <td>Activités</td>
-                            <td> </td>
-                        </tr>
-                        <tr>
-                            <td>EcoFarm</td>
-                            <td> </td>
-                        </tr>
-                        <tr>
-                            <td>Certification</td>
-                            <td> </td>
+                            <td><b>Certification</b></td>
+                            <td>{{farm?.certification}} </td>
                         </tr>
                     </table>
                 </mat-expansion-panel>
@@ -92,18 +94,22 @@
             <mat-card-header>
                 <mat-card-title>Indice de durabilité</mat-card-title>
                 <mat-card-subtitle>
-                    <div class="appreciation center-align farm-logo" style="margin: auto; width: 120px; height: 120px; border-radius: 200px; border-style:solid; 
-                        border-width:4px; border-color:#F6A030;">
-                        <br>
-                        <span style="color: #F6A030;font-weight: bold;"> /100</span>
+                    <div class="circle">
+                        <span style="color: #F6A030;font-weight: bold; font-size: large;"> {{farm?.score}} /100</span>
                         <!-- <div class="appreciation ">
                                 Bon
                             </div> -->
                     </div>
                     <div>
-                        <mat-progress-bar class="example-margin" [color]="'primary'" [bufferValue]="20"
-                            [mode]="'buffer'" [value]="50">
+                        <mat-progress-bar placement="top" ngbTooltip="Tooltip on top" [color]="'warn'"
+                            [bufferValue]="bufferProgress" [mode]="'buffer'" [value]="scoreProgress">
                         </mat-progress-bar>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-outline-secondary mr-2" placement="bottom"
+                            ngbTooltip="Tooltip on top">
+                            Tooltip on top
+                        </button>
                     </div>
                 </mat-card-subtitle>
             </mat-card-header>

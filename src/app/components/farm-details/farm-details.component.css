@@ -1,3 +1,20 @@
-mat-card{
+mat-card {
     max-width: 500px;
+}
+
+.right {
+    text-align: right;
+    margin-right: 1em;
+}
+
+.circle {
+    margin: auto;
+    width: 120px;
+    height: 120px;
+    border-radius: 200px;
+    border-style: solid;
+    border-width: 4px;
+    border-color: #F6A030;
+    text-align: center;
+    line-height: 6;
 }
