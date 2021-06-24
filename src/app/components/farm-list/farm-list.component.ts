@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -89,11 +89,23 @@ export class FarmListComponent implements OnInit {
   oldScore: string;
   farms: any[];
 
+  isChecked = true;
+
   constructor(private formBuilder: FormBuilder, private apiService: ApiService,
     private sanitizer: DomSanitizer,
     private router: Router,
     public dialog: MatDialog) {
     var curState = this.sessionStorage.getItem(Globals.SEARCH_FORM_STATE_KEY);
+
+    this.filterForm = this.formBuilder.group({
+      region: [],
+      activities: [],
+      productions: [],
+      reseaux: [],
+      ventesDirectes: [],
+      score: []
+    });
+    this.reseaux$ = this.apiService.loadReseaux();
   }
 
 
@@ -104,16 +116,6 @@ export class FarmListComponent implements OnInit {
         this.farms = farms;
       })
     }
-
-    this.filterForm = this.formBuilder.group({
-      region: [''],
-      activities: [''],
-      productions: [''],
-      reseaux: [''],
-      ventesDirectes: [''],
-      score: ['']
-    });
-    this.reseaux$ = this.apiService.loadReseaux();
 
     this.handleChipsOnInit();
   }
@@ -130,6 +132,13 @@ export class FarmListComponent implements OnInit {
         else this.keywords.add(val[1]);
       });
     }
+  }
+
+  onToogleMap(){
+    if (this.isChecked){
+      this.isChecked = false;
+    }
+    else this.isChecked = true;
   }
 
   onFormSubmit() {

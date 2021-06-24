@@ -1,33 +1,17 @@
-<!-- <mat-toolbar color="primary" layout="fill">
-  <div>Angular {{ngVersion}} | Angular Material {{matVersion}}</div>
-</mat-toolbar> -->
-
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-    <nav class="white z-depth-2" role="navigation">
-        <div class="nav-wrapper">
-            <a id="logo-container" href="https://ecofarms.co/" class="brand-logo">
-                <img src="/assets/EcoFarmsHorizontal.png" alt="Ecofarms logo" width="200" />
-            </a>
-
-            <nav class="my-2 my-md-0 mr-md-3">
-                <a class="btn" routerLinkActive="active" routerLink="/employees-list">La carte Ecofarms</a>
-                <a href="#" class="btn" style="color: #F6A030;" routerLinkActive="active"
-                    routerLink="/create-employee">Devenir Ecofarm</a>
-            </nav>
-            <!-- <ul class="right hide-on-med-and-down">
-        <li><a href="#">La carte Ecofarms</a></li>
-        <li><a href="#" style="color: #F6A030;" >Devenir Ecofarm</a></li>
-        
-      </ul>
-  
-      <ul id="nav-mobile" class="sidenav">
-        <li><a href="#">Accueil</a></li>
-        <li><a href="#">Produits</a></li>
-        <li><a href="#">Ecofarms map</a></li>
-        <li><a href="#">Télécharger</a></li>
-        <li><a href="#">S'inscrire</a></li>
-      </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger" style="color: #F6A030; margin-top:6px"><i class="material-icons">menu</i></a> -->
-        </div>
-    </nav>
+<div fxLayout="row" fxLayoutAlign="space-around">
+    <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
+      <div class="nav-wrapper">
+        <a id="logo-container" href="https://ecofarms.co/" class="brand-logo">
+          <img src="/assets/EcoFarmsHorizontal.png" alt="Ecofarms logo" width="200" />
+        </a>
+      </div>
+      <div>
+        <nav class="my-2 my-md-0 mr-md-3">
+          <a class="btn" routerLinkActive="active" routerLink="/employees-list">La carte Ecofarms</a>
+          <a href="#" class="btn" style="color: #F6A030;" routerLinkActive="active" routerLink="/create-employee">Devenir Ecofarm</a>
+        </nav>
+      </div>
+    </div>
+  </div>
 </div>

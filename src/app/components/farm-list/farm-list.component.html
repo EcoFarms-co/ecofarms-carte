@@ -1,66 +1,73 @@
 <form [formGroup]="filterForm">
-    <div class="flex-container-filter">
-        <div>
-            <mat-form-field appearance="outline">
-                <mat-label>Régions</mat-label>
-                <mat-select formControlName="region" (selectionChange)="manageChips($event.value,'region')" multiple>
-                    <mat-option class="not-empty-select" *ngFor="let region of regionList" [value]="region">{{region}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div>
-            <mat-form-field appearance="outline">
-                <mat-label>Productions</mat-label>
-                <mat-select formControlName="productions" (selectionChange)="manageChips($event.value,'production')"
-                    multiple>
-                    <mat-option class="not-empty-select" *ngFor="let production of productionList" [value]="production">
-                        {{production}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
+    <div fxLayout="row" fxLayoutAlign="space-around">
+        <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Régions</mat-label>
+                    <mat-select formControlName="region" (selectionChange)="manageChips($event.value,'region')"
+                        multiple>
+                        <mat-option class="not-empty-select" *ngFor="let region of regionList" [value]="region">
+                            {{region}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Productions</mat-label>
+                    <mat-select formControlName="productions" (selectionChange)="manageChips($event.value,'production')"
+                        multiple>
+                        <mat-option class="not-empty-select" *ngFor="let production of productionList"
+                            [value]="production">
+                            {{production}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
 
-        <div>
+            <div>
 
-            <button mat-stroked-button color="warn" (click)="openScoreDialog()">Score</button>
+                <button mat-stroked-button color="warn" (click)="openScoreDialog()">Score</button>
 
-        </div>
-        <div>
-            <mat-form-field appearance="outline">
-                <mat-label>Activités</mat-label>
-                <mat-select formControlName="activities" (selectionChange)="manageChips($event.value,'activite')"
-                    multiple>
-                    <mat-option class="not-empty-select" *ngFor="let activite of activiteList" [value]="activite">
-                        {{activite}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Activités</mat-label>
+                    <mat-select formControlName="activities" (selectionChange)="manageChips($event.value,'activite')"
+                        multiple>
+                        <mat-option class="not-empty-select" *ngFor="let activite of activiteList" [value]="activite">
+                            {{activite}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
 
-        <div>
-            <mat-form-field appearance="outline">
-                <mat-label>Vente Directe</mat-label>
-                <mat-select formControlName="ventesDirectes" (selectionChange)="manageChips($event.value,'vente')"
-                    multiple>
-                    <mat-option class="not-empty-select" *ngFor="let vd of vdList" [value]="vd">{{vd.title}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Vente Directe</mat-label>
+                    <mat-select formControlName="ventesDirectes" (selectionChange)="manageChips($event.value,'vente')"
+                        multiple>
+                        <mat-option class="not-empty-select" *ngFor="let vd of vdList" [value]="vd">{{vd.title}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
 
-        <div>
-            <mat-form-field appearance="outline">
-                <mat-label>Réseaux</mat-label>
-                <mat-select formControlName="reseaux" (selectionChange)="manageChips($event.value,'reseau')" multiple>
-                    <mat-option class="not-empty-select" *ngFor="let reseau of reseaux$ | async" [value]="reseau.name">
-                        {{reseau.name}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div>
-            <button mat-raised-button color="accent" (click)="onFormSubmit()">Rechercher</button>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Réseaux</mat-label>
+                    <mat-select formControlName="reseaux" (selectionChange)="manageChips($event.value,'reseau')"
+                        multiple>
+                        <mat-option class="not-empty-select" *ngFor="let reseau of reseaux$ | async"
+                            [value]="reseau.name">
+                            {{reseau.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <button mat-raised-button color="accent" (click)="onFormSubmit()">Rechercher</button>
+            </div>
         </div>
     </div>
 
@@ -77,32 +84,25 @@
             </mat-chip-list>
         </mat-form-field>
     </div>
+    <div>
+        <mat-slide-toggle [color]="'warn'" (click)="onToogleMap()"> Afficher la carte
+        </mat-slide-toggle>
+    </div>
 
     <div fxLayout="row">
-        <div fxLayout="row wrap" fxLayoutGap="16px" class="align">
-            <mat-card fxFlex.lg="0 1 calc(33% - 16px)"
-            fxFlex.lt-lg="calc(50% - 16px)" *ngFor="let member of farms"
-                fxFlex.xs="calc(100% - 16px)" (click)="goToFarmDetails(member._id)">
-                <mat-card-header>
-                    <mat-card-title>{{member.name}}</mat-card-title>
-                    <mat-card-subtitle><span style="color: #F6A030;font-weight: bold;"> {{member.score}} /
-                            100</span></mat-card-subtitle>
-                </mat-card-header>
+        <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
+            <mat-card fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)"
+                (click)="goToFarmDetails(member._id)" *ngFor="let member of farms">
+                <mat-card-title>{{member.name}}</mat-card-title>
+                <mat-card-subtitle><span style="color: #F6A030;font-weight: bold;"> {{member.score}} /
+                        100</span></mat-card-subtitle>
                 <img mat-card-image *ngIf="member.photo && member.photo.imageBase64"
                     [src]="sanitizer.bypassSecurityTrustResourceUrl('data:image/jpeg;base64,' + member.photo.imageBase64)"
                     alt="Photo of {{member.title}}">
-                <mat-card-content>
-                    <p>
-                        {{member.description}}
-                    </p>
-                </mat-card-content>
-                <mat-card-actions>
-                    <button mat-button>LIKE</button>
-                    <button mat-button>SHARE</button>
-                </mat-card-actions>
+                <mat-card-content> {{member.description}}</mat-card-content>
             </mat-card>
         </div>
-        <div fxFlex="50" style="padding: 2%;">
+        <div *ngIf="isChecked" fxFlex="50" style="padding: 2%;">
             <google-map height="600px"></google-map>
         </div>
     </div>
