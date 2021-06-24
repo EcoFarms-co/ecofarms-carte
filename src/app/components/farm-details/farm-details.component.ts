@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ThemePalette } from '@angular/material/core';
-import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-farm-details',
@@ -10,6 +8,8 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 })
 export class FarmDetailsComponent implements OnInit {
   myParam: string;
+  displayedColumns: string[] = ['surface', 'culture', 'nbEmp', 'activite', 'ecoFarm', 'certif'];
+  panelOpenState = false;
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
