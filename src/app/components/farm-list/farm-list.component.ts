@@ -148,10 +148,9 @@ export class FarmListComponent implements OnInit {
       if (!`${toSend[key]}`)
         delete toSend[key];
     }
-    console.log("filter toSend ", toSend);
-    console.log("JSON.stringify(this.filterForm.value) ", JSON.stringify(this.filterForm.value));
     this.sessionStorage.setItem(Globals.SEARCH_FORM_STATE_KEY, JSON.stringify(this.filterForm.value));
     this.apiService.getFarmsByFilters(toSend).subscribe(farms => {
+      console.log("farms ", farms);
       this.farms = farms;
     })
   }

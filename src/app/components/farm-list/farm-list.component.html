@@ -25,9 +25,8 @@
                 </mat-form-field>
             </div>
 
-            <div>
-
-                <button mat-stroked-button color="warn" (click)="openScoreDialog()">Score</button>
+            <div class="test-div">
+                <button type="button" class="btn btn-warning" (click)="openScoreDialog()">Score</button>
 
             </div>
             <div>
@@ -65,14 +64,14 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <div>
-                <button mat-raised-button color="accent" (click)="onFormSubmit()">Rechercher</button>
+            <div class="div-button-recherche">
+                <button type="button" class="btn btn-success btn-lg" (click)="onFormSubmit()">Rechercher</button>
             </div>
         </div>
     </div>
 
 
-    <div class="content">
+    <div>
         <mat-form-field class="example-chip-list">
             <mat-label>Critères de recherche</mat-label>
             <mat-chip-list #chipList aria-label="Critères de recherche" multiple>
@@ -84,8 +83,8 @@
             </mat-chip-list>
         </mat-form-field>
     </div>
-    <div>
-        <mat-slide-toggle [color]="'warn'" (click)="onToogleMap()"> Afficher la carte
+    <div class="div-slide-toogle">
+        <mat-slide-toggle [color]="'warn'" (click)="onToogleMap()"> {{isChecked == true ? "Masquer la carte" : "Afficher la carte"}}
         </mat-slide-toggle>
     </div>
 
@@ -99,7 +98,21 @@
                 <img mat-card-image *ngIf="member.photo && member.photo.imageBase64"
                     [src]="sanitizer.bypassSecurityTrustResourceUrl('data:image/jpeg;base64,' + member.photo.imageBase64)"
                     alt="Photo of {{member.title}}">
-                <mat-card-content> {{member.description}}</mat-card-content>
+                <mat-card-content>
+                    {{member.description}}
+                </mat-card-content>
+                <mat-divider></mat-divider>
+                <mat-card-actions>
+                    <div>
+                        <i class="material-icons">location_on</i>
+                        {{member.localisation}}
+                    </div>
+                    <!-- <div>
+                        <img src="assets/sprout2.png" width="20" height="20" />
+                        {{member.productions}}
+                    </div> -->
+                </mat-card-actions>
+
             </mat-card>
         </div>
         <div *ngIf="isChecked" fxFlex="50" style="padding: 2%;">

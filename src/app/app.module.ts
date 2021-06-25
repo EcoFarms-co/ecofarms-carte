@@ -32,6 +32,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
+import {MatDividerModule} from '@angular/material/divider';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -74,7 +75,8 @@ import {NgbTooltip, NgbDropdown} from '@ng-bootstrap/ng-bootstrap';
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatSlideToggleModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDividerModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

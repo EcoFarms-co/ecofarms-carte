@@ -1,6 +1,7 @@
 .example-chip-list {
   width: 100%;
   justify-content: center;
+  padding: 1%;
 }
 
 .example-button-container>button {
@@ -22,10 +23,10 @@
 }
 
 /* Border */
+
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
   color: #F6A030;
 }
-
 
 ::ng-deep .mat-form-field-underline, ::ng-deep .mat-form-field-ripple {
   background-color: #F6A030 !important;
@@ -37,7 +38,7 @@
   justify-content: center;
 }
 
-.flex-container-filter > div {
+.flex-container-filter>div {
   text-align: center;
   margin: 5px;
 }
@@ -67,4 +68,17 @@ mat-card {
 
 .ml-10 {
   margin-left: 10px;
+}
+
+.test-div {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.div-button-recherche{
+  margin-top: 8px;
+}
+
+.div-slide-toogle{
+  padding-left: 85%;
 }
