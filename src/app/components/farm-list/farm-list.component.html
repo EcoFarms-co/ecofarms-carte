@@ -84,11 +84,14 @@
         </mat-form-field>
     </div>
     <div class="div-slide-toogle">
-        <mat-slide-toggle [color]="'warn'" (click)="onToogleMap()"> {{isChecked == true ? "Masquer la carte" : "Afficher la carte"}}
+        <mat-slide-toggle [color]="'warn'" (click)="onToogleMap()"> {{isChecked == true ? "Masquer la carte" : "Afficher
+            la carte"}}
         </mat-slide-toggle>
     </div>
 
     <div fxLayout="row">
+        <!-- <mat-icon>pie_chart</mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon> -->
         <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
             <mat-card fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)"
                 (click)="goToFarmDetails(member._id)" *ngFor="let member of farms">
@@ -107,16 +110,16 @@
                         <i class="material-icons">location_on</i>
                         {{member.localisation}}
                     </div>
-                    <!-- <div>
+                    <div>
                         <img src="assets/sprout2.png" width="20" height="20" />
                         {{member.productions}}
-                    </div> -->
+                    </div>
                 </mat-card-actions>
 
             </mat-card>
         </div>
-        <div *ngIf="isChecked" fxFlex="50" style="padding: 2%;">
-            <google-map height="600px"></google-map>
+        <div *ngIf="isChecked" fxFlex="50">
+            <google-map height="800px" width="700px"></google-map>
         </div>
     </div>
 </form>

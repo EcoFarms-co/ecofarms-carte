@@ -28,7 +28,19 @@
                 <mat-expansion-panel hideToggle>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            <span style="color: #F6A030;">Tableau d'informations générales</span>
+                            <!-- TODO arrow Circle down  -->
+                            <div style="margin-right: auto; 
+                            margin-left: 0;">
+                                <span class="material-icons">
+                                    arrow_circle_down
+                                </span>
+                            </div>
+                            <div style="margin-left: auto; 
+                            margin-right: 0;">
+                                <span class="material-icons">
+                                    arrow_circle_down
+                                </span>
+                            </div>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
                     <table>
@@ -95,8 +107,9 @@
                     </div>
                     &nbsp;
                     <div>
-                        <mat-progress-bar placement="top" tooltipClass="my-custom-class" ngbTooltip="score minimale EcoFarms est 40, Score de la ferme {{farm?.score}}" [color]="'warn'"
-                            [bufferValue]="40" [mode]="'buffer'" [value]="scoreProgress">
+                        <mat-progress-bar placement="top" tooltipClass="my-custom-class"
+                            ngbTooltip="score minimale EcoFarms est 40, Score de la ferme {{farm?.score}}"
+                            [color]="'warn'" [bufferValue]="40" [mode]="'buffer'" [value]="scoreProgress">
                         </mat-progress-bar>
                     </div>
                 </mat-card-subtitle>
@@ -110,8 +123,7 @@
                 </p>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-button>LIKE</button>
-                <button mat-button>SHARE</button>
+                <button mat-button (click)="onLikeButton()">LIKE</button> {{nbLike}}
             </mat-card-actions>
         </mat-card>
     </div>

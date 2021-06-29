@@ -32,11 +32,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {NgbTooltip, NgbDropdown} from '@ng-bootstrap/ng-bootstrap';
+import { NgbTooltip, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import {NgbTooltip, NgbDropdown} from '@ng-bootstrap/ng-bootstrap';
     FarmDetailsComponent,
     ScoreDialogComponent,
     NgbTooltip,
-    NgbDropdown
+    NgbDropdown    
   ],
   imports: [
     FormsModule,
@@ -76,7 +77,8 @@ import {NgbTooltip, NgbDropdown} from '@ng-bootstrap/ng-bootstrap';
     MatProgressBarModule,
     MatSlideToggleModule,
     MatExpansionModule,
-    MatDividerModule
+    MatDividerModule,
+    MatIconModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

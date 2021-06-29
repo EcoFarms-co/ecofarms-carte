@@ -108,8 +108,18 @@ export class ApiService {
   }
 
 
-  loadReseaux(): Observable<any>{
+  loadReseaux(): Observable<any> {
     return this.http.get(`${this.baseUri}/reseaux`).pipe(catchError(this.errorMgmt));
   }
 
+  getIPAddress() {
+    return this.http.get("http://api.ipify.org/?format=json");
+  }
+
+  getCheckIpAdressesAndIncrement(farmId: any, ipAdress: any): Observable<any> {
+    let params = new HttpParams().set('farmId', farmId).set('ipAdress', ipAdress);
+    console.log("params ", params)
+    return this.http.get(`${this.baseUri}/checkLikeCouterAndIncrement`, { params: params }).pipe(
+      catchError(this.errorMgmt));
+  }
 }
