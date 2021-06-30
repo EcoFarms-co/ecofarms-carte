@@ -22,7 +22,7 @@ export class ScoreDialogComponent implements OnInit {
     else if (value >= 40 && value <= 59)
       return 'Bon';
     else if (value >= 60 && value <= 79)
-      return 'Trés Bon';
+      return 'Avancé';
     else if (value >= 80 && value <= 100)
       return 'Excellent';
       console.log("this.score ", this.score)

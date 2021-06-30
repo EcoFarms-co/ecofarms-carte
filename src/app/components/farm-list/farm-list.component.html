@@ -26,7 +26,8 @@
             </div>
 
             <div class="test-div">
-                <button type="button" class="btn btn-warning" (click)="openScoreDialog()">Score</button>
+                <!-- TODO: contour orange fond blanc -->
+                <button mat-raised-button color="blue" (click)="openScoreDialog()">Score</button>
 
             </div>
             <div>
@@ -65,7 +66,8 @@
                 </mat-form-field>
             </div>
             <div class="div-button-recherche">
-                <button type="button" class="btn btn-success btn-lg" (click)="onFormSubmit()">Rechercher</button>
+                <!-- bouton height comme filtre -->
+                <button mat-raised-button color="blue" (click)="onFormSubmit()">Rechercher </button>
             </div>
         </div>
     </div>
@@ -84,7 +86,7 @@
         </mat-form-field>
     </div>
     <div class="div-slide-toogle">
-        <mat-slide-toggle [color]="'warn'" (click)="onToogleMap()"> {{isChecked == true ? "Masquer la carte" : "Afficher
+        <mat-slide-toggle (click)="onToogleMap()"> {{isChecked == true ? "Afficher la carte" : "Masquer
             la carte"}}
         </mat-slide-toggle>
     </div>
@@ -94,7 +96,7 @@
         <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon> -->
         <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
             <mat-card fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)"
-                (click)="goToFarmDetails(member._id)" *ngFor="let member of farms">
+                (click)="goToFarmDetails(member._id)" *ngFor="let member of farms; let in = index">
                 <mat-card-title>{{member.name}}</mat-card-title>
                 <mat-card-subtitle><span style="color: #F6A030;font-weight: bold;"> {{member.score}} /
                         100</span></mat-card-subtitle>
@@ -102,23 +104,24 @@
                     [src]="sanitizer.bypassSecurityTrustResourceUrl('data:image/jpeg;base64,' + member.photo.imageBase64)"
                     alt="Photo of {{member.title}}">
                 <mat-card-content>
-                    {{member.description}}
+                    <!-- {{member.description}} -->
                 </mat-card-content>
                 <mat-divider></mat-divider>
                 <mat-card-actions>
                     <div>
                         <i class="material-icons">location_on</i>
-                        {{member.localisation}}
+                        {{member.localisation}}, {{member.region}} 
                     </div>
                     <div>
                         <img src="assets/sprout2.png" width="20" height="20" />
-                        {{member.productions}}
+                        <li *ngFor="let prod of member.productions"> {{ prod }}</li>
+                        <!-- {{member.productions}} -->
                     </div>
                 </mat-card-actions>
 
             </mat-card>
         </div>
-        <div *ngIf="isChecked" fxFlex="50">
+        <div *ngIf="!isChecked" fxFlex="50">
             <google-map height="800px" width="700px"></google-map>
         </div>
     </div>

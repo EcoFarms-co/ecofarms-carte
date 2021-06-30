@@ -27,6 +27,15 @@
   background-color: #F6A030 !important;
 }
 
+.mat-button.mat-blue {
+  color: #6D9EEB;
+}
+
+.mat-raised-button.mat-blue, .mat-flat-button.mat-blue{
+  background-color: #6D9EEB;
+  color: white;
+}
+
 /* define font for bootstrap to Montserrat */
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;

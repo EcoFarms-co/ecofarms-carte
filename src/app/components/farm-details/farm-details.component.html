@@ -1,17 +1,13 @@
-<div fxLayout="row" style="justify-content: space-evenly">
-    <div fxLayout="column" style="justify-content: space-around" fxLayoutGap="10px">
+<div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center">
+    <div fxLayout="column" fxLayoutAlign="space-around" fxLayoutGap="10px">
         <!-- (click)="goToFarmDetails(member._id)" *ngFor="let member of farms" -->
 
         <mat-card>
             <mat-card-title>{{farm?.name}}</mat-card-title>
-            <mat-card-subtitle>{{farm?.region}}
+            <!-- evaluationDate + site web -->
+            <mat-card-subtitle>{{farm?.localisation}}, {{farm?.region}}, {{farm?.evaluationDate}}, 
+            <br>    <img src="assets/sprout2.png" width="20" height="20" />{{farm?.productions}}  
             </mat-card-subtitle>
-            <mat-card-content>
-                <button type="button" class="btn btn-outline-secondary mr-2" placement="bottom"
-                    ngbTooltip="Tooltip on top">
-                    Tooltip on top
-                </button>
-            </mat-card-content>
         </mat-card>
 
         <mat-card>
@@ -25,11 +21,10 @@
         <mat-card>
             <mat-card-title><span style="color: #F6A030;">Informations générales</span> </mat-card-title>
             <mat-accordion>
-                <mat-expansion-panel hideToggle>
+                <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            <!-- TODO arrow Circle down  -->
-                            <div style="margin-right: auto; 
+                            <!-- <div style="margin-right: auto; 
                             margin-left: 0;">
                                 <span class="material-icons">
                                     arrow_circle_down
@@ -40,33 +35,34 @@
                                 <span class="material-icons">
                                     arrow_circle_down
                                 </span>
-                            </div>
+                            </div> -->
                         </mat-panel-title>
                     </mat-expansion-panel-header>
+                    <!-- TODO espacer la colonne de droite vers la droite -->
                     <table>
                         <tr>
                             <td><b>Surface</b></td>
-                            <td> {{farm?.surface}}</td>
+                            <td class="right"> {{farm?.surface}}</td>
                         </tr>
                         <tr>
                             <td><b>Cultures</b></td>
-                            <td> {{farm?.cultures}}</td>
+                            <td class="right"> {{farm?.cultures}}</td>
                         </tr>
                         <tr>
                             <td><b>Nombre d'employés </b></td>
-                            <td>{{farm?.employees}} </td>
+                            <td class="right">{{farm?.employees}} </td>
                         </tr>
                         <tr>
                             <td><b>Activités</b></td>
-                            <td> {{farm?.activities}}</td>
+                            <td class="right"> {{farm?.activities}}</td>
                         </tr>
                         <tr>
                             <td><b>EcoFarm</b></td>
-                            <td> </td>
+                            <td class="right"> </td>
                         </tr>
                         <tr>
                             <td><b>Certification</b></td>
-                            <td>{{farm?.certification}} </td>
+                            <td class="right">{{farm?.certification}} </td>
                         </tr>
                     </table>
                 </mat-expansion-panel>
@@ -76,54 +72,61 @@
         <mat-card style="background-color:#f1d4ad;padding:5px;">
             <mat-card-title><span style="color: #F6A030;">Détails des scores</span>
             </mat-card-title>
-            <mat-card-content>
+            <mat-card-content *ngFor="let dim of scoreDimension">
                 <mat-accordion>
-                    <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel>
+                        <!-- (click)="onClickDetailScore()" -->
                         <mat-expansion-panel-header>
                             <mat-panel-title>
-                                Exemple de dimension
+                               <span style="color: #F6A030;"> {{dim.dimensionId.name}} </span>
                             </mat-panel-title>
                             <mat-panel-description>
-                                table des notes
+                                <span style="color: #F6A030;">  {{dim.score}}/100 </span>
                             </mat-panel-description>
                         </mat-expansion-panel-header>
+
+
                         <p>Doit contenir</p>
+                    
+                    
                     </mat-expansion-panel>
                 </mat-accordion>
             </mat-card-content>
         </mat-card>
 
     </div>
-    <div style="justify-content: center">
-        <mat-card class="mat-elevation-z4">
+    <div style="justify-content: center; height: max-content;">
+        <mat-card>
             <mat-card-header>
-                <mat-card-title>Indice de durabilité</mat-card-title>
+                <mat-card-title style="color: #F6A030;">Indice de durabilité</mat-card-title>
                 <mat-card-subtitle>
                     <div class="circle">
-                        <span style="color: #F6A030;font-weight: bold; font-size: large;"> {{farm?.score}} /100</span>
-                        <!-- <div class="appreciation ">
-                                Bon
-                            </div> -->
+                        <span style="color: #F6A030;font-weight: bold; font-size: large;"> {{farm?.score}} /100 </span>
+
                     </div>
                     &nbsp;
                     <div>
                         <mat-progress-bar placement="top" tooltipClass="my-custom-class"
-                            ngbTooltip="score minimale EcoFarms est 40, Score de la ferme {{farm?.score}}"
-                            [color]="'warn'" [bufferValue]="40" [mode]="'buffer'" [value]="scoreProgress">
+                            ngbTooltip="Score minimale EcoFarms est 40, Score de la ferme {{farm?.score}}"
+                            [color]="'accent'" [bufferValue]="40" [mode]="'buffer'" [value]="scoreProgress">
                         </mat-progress-bar>
                     </div>
                 </mat-card-subtitle>
             </mat-card-header>
-            <!-- <img mat-card-image *ngIf="member.photo && member.photo.imageBase64"
-                [src]="sanitizer.bypassSecurityTrustResourceUrl('data:image/jpeg;base64,' + member.photo.imageBase64)"
-                alt="Photo of {{member.title}}"> -->
             <mat-card-content>
-                <p>
-                    Description
-                </p>
+                <div>
+                    <mat-divider></mat-divider>
+                </div>
+                &nbsp;
+                <div *ngFor="let scoreDim of scoreDimension" style="margin-bottom: 5%;">
+                    <span>
+                        {{scoreDim.dimensionId.name}}
+                    </span>
+                    <span style="color:#F6A030; font-weight: bold;"> {{scoreDim.score}}/100 </span>
+                </div>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-button (click)="onLikeButton()">LIKE</button> {{nbLike}}
+                <button mat-button (click)="onLikeButton()">J'aime</button> {{nbLike}}
             </mat-card-actions>
         </mat-card>
     </div>

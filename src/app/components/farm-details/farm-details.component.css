@@ -1,7 +1,20 @@
-mat-card {
+.mat-card {
     max-width: 500px;
 }
 
+.mat-progress-bar {
+    height: 10px;
+}
+
+.mat-divider {
+    border-top-width: 4px;
+    border-top-style: groove;
+}
+
+.mat-expansion-panel-header-description {
+    display: flex;
+    justify-content: flex-end;
+  }
 
 
 .right {

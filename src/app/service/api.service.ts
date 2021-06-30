@@ -91,20 +91,19 @@ export class ApiService {
   getFarmDetails(farmId: any): Observable<any> {
     let params = new HttpParams().set('id', farmId);
     let url = `${this.baseUri}/farms/${farmId}`;
-    console.log('farmId sent to the back ', farmId);
     return this.http.get(url, { params: params }).pipe(
       catchError(this.errorMgmt)
     )
   }
 
-  getScoreDimensionByIdFarm(farmId: any): Observable<any> {
+  async getScoreDimensionByIdFarm(farmId: any) {
     let params = new HttpParams().set('id', farmId);
 
     let url = `${this.baseUri}/farm/${farmId}/score-dimensions`;
     console.log('farmId sent to the back to retreive score dimension ', farmId);
     return this.http.get(url, { params: params }).pipe(
       catchError(this.errorMgmt)
-    )
+    ).toPromise();
   }
 
 
@@ -118,8 +117,25 @@ export class ApiService {
 
   getCheckIpAdressesAndIncrement(farmId: any, ipAdress: any): Observable<any> {
     let params = new HttpParams().set('farmId', farmId).set('ipAdress', ipAdress);
-    console.log("params ", params)
     return this.http.get(`${this.baseUri}/checkLikeCouterAndIncrement`, { params: params }).pipe(
       catchError(this.errorMgmt));
+  }
+
+  getClusterByDimId(dimId: any){
+    let params = new HttpParams().set('dimId', dimId);
+    return this.http.get(`${this.baseUri}/clusters/dimension/${dimId}`, { params: params }).pipe(
+      catchError(this.errorMgmt));
+  }
+
+
+  async getClusters(){
+    return this.http.get(`${this.baseUri}/clusters`).pipe(
+      catchError(this.errorMgmt)).toPromise();
+  }
+
+ async getScoreClusterByFarmId(farmId: any){
+    let params = new HttpParams().set('dimId', farmId);
+    return this.http.get(`${this.baseUri}/farm/${farmId}/score-clusters/`, { params: params }).pipe(
+      catchError(this.errorMgmt)).toPromise();
   }
 }

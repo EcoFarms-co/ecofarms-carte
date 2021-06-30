@@ -5,6 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Globals } from 'src/app/app.contants';
+import { Farm } from 'src/app/model/Farm';
 import { ApiService } from 'src/app/service/api.service';
 import { ScoreDialogComponent } from 'src/app/shared-components/score-dialog/score-dialog.component';
 
@@ -87,7 +88,8 @@ export class FarmListComponent implements OnInit {
   cardValues$: Observable<any[]>;
   reseaux$: Observable<any[]>;
   oldScore: string;
-  farms: any[];
+  farms: Farm[];
+  productions: any[] = [];
 
   isChecked = true;
 
@@ -112,11 +114,10 @@ export class FarmListComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.sessionStorage.getItem(Globals.SEARCH_FORM_STATE_KEY)) {
-      this.apiService.getFarmsByFilters(JSON.parse(this.sessionStorage.getItem(Globals.SEARCH_FORM_STATE_KEY))).subscribe(farms => {
+      this.apiService.getFarmsByFilters(JSON.parse(this.sessionStorage.getItem(Globals.SEARCH_FORM_STATE_KEY))).subscribe((farms: Farm[]) => {
         this.farms = farms;
       })
     }
-
     this.handleChipsOnInit();
   }
 
@@ -134,11 +135,11 @@ export class FarmListComponent implements OnInit {
     }
   }
 
-  onToogleMap(){
-    if (this.isChecked){
-      this.isChecked = false;
+  onToogleMap() {
+    if (!this.isChecked) {
+      this.isChecked = true;
     }
-    else this.isChecked = true;
+    else this.isChecked = false;
   }
 
   onFormSubmit() {
@@ -152,6 +153,8 @@ export class FarmListComponent implements OnInit {
     this.apiService.getFarmsByFilters(toSend).subscribe(farms => {
       console.log("farms ", farms);
       this.farms = farms;
+      this.productions = farms.productions;
+      console.log("this.productions ", farms);
     })
   }
 

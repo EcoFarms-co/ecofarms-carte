@@ -13,7 +13,7 @@ export class Farm {
     longitude: any;
     latitude: any;
     description: any;
-    installationDate:Date;
+    evaluationDate: Date;
     surface: any;
     employees: number;
     productions: any[];
@@ -22,5 +22,7 @@ export class Farm {
     activities: any[];
     score: number;
     ecofarms: string;
-    photo: any
- }
+    photo: any;
+    nbLikes: number;
+    ipAdressess: any[];
+}
