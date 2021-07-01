@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Digamber",
-  "license": "ISC",
+  "author": "Firas",
+  "license": "BABAY",
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",

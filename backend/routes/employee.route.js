@@ -7,6 +7,7 @@ let Employee = require('../models/Employee');
 
 // Add Employee
 employeeRoute.route('/create').post((req, res, next) => {
+  console.log("in api create employee")
   Employee.create(req.body, (error, data) => {
     if (error) {
       return next(error)

@@ -6,7 +6,7 @@ import { ApiService } from 'src/app/service/api.service';
 @Component({
   selector: 'app-farm-details',
   templateUrl: './farm-details.component.html',
-  // encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./farm-details.component.css']
 })
 export class FarmDetailsComponent implements OnInit, OnDestroy {

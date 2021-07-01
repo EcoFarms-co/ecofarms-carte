@@ -9,14 +9,14 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular
 
 export class ApiService {
 
-  baseUri: string = 'http://localhost:3000/api';
+  baseUri: string = 'http://localhost:4000/api';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
 
   // Create
   createEmployee(data): Observable<any> {
-    let url = `${this.baseUri}/create`;
+    let url = `/create`;
     return this.http.post(url, data)
       .pipe(
         catchError(this.errorMgmt)
@@ -25,12 +25,12 @@ export class ApiService {
 
   // Get all employees
   getEmployees() {
-    return this.http.get(`${this.baseUri}`);
+    return this.http.get(``);
   }
 
   // Get employee
   getEmployee(id): Observable<any> {
-    let url = `${this.baseUri}/read/${id}`;
+    let url = `/read/${id}`;
     return this.http.get(url, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
