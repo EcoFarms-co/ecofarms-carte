@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular
 
 export class ApiService {
 
-  baseUri: string = 'http://localhost:4000/api';
+  baseUri: string = 'https://ecofarms-france.herokuapp.com/api';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
@@ -96,14 +96,12 @@ export class ApiService {
     )
   }
 
-  async getScoreDimensionByIdFarm(farmId: any) {
+   getScoreDimensionByIdFarm(farmId: any) {
     let params = new HttpParams().set('id', farmId);
 
     let url = `${this.baseUri}/farm/${farmId}/score-dimensions`;
-    console.log('farmId sent to the back to retreive score dimension ', farmId);
     return this.http.get(url, { params: params }).pipe(
-      catchError(this.errorMgmt)
-    ).toPromise();
+      catchError(this.errorMgmt));
   }
 
 
@@ -128,14 +126,14 @@ export class ApiService {
   }
 
 
-  async getClusters(){
+  getClusters(){
     return this.http.get(`${this.baseUri}/clusters`).pipe(
-      catchError(this.errorMgmt)).toPromise();
+      catchError(this.errorMgmt));
   }
 
- async getScoreClusterByFarmId(farmId: any){
+ getScoreClusterByFarmId(farmId: any){
     let params = new HttpParams().set('dimId', farmId);
     return this.http.get(`${this.baseUri}/farm/${farmId}/score-clusters/`, { params: params }).pipe(
-      catchError(this.errorMgmt)).toPromise();
+      catchError(this.errorMgmt));
   }
 }

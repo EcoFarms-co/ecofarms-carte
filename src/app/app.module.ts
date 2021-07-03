@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { EmployeeCreateComponent } from './components/employee-create/employee-create.component';
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 import { EmployeeEditComponent } from './components/employee-edit/employee-edit.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { ApiService } from './service/api.service';
 import { FooterComponent } from './shared-components/footer/footer.component';
@@ -38,6 +38,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbTooltip, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
+import { ApiInterceptorService } from './service/api-interceptor.service';
 
 @NgModule({
   declarations: [

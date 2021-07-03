@@ -21,15 +21,17 @@ export class FarmDetailsComponent implements OnInit, OnDestroy {
   scoreClusters: any[];
   ipAdress: any;
   nbLike: any;
-  clusters: any[] = [];
+  clustersArray: any[];
   finalTable: any[] = [];
   dimensionScoreTable: any[] = [];
+  tempClustersArray: any[] = [];
+  clustersByDimId: any[] = [];
 
   constructor(private route: ActivatedRoute, private apiService: ApiService) {
     this.route.params.subscribe((params: Params) => this.farmId = params['id']);
   }
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit() {
     this.apiService.getIPAddress().subscribe((adressIp: any) => {
       this.ipAdress = adressIp.ip;
       console.log('adresse Ip ', adressIp)
@@ -43,77 +45,34 @@ export class FarmDetailsComponent implements OnInit, OnDestroy {
     },
       (error) => console.log("error occured when retreiving farm details ", error));
 
-    await this.apiService.getScoreDimensionByIdFarm(this.farmId).then((scoreDimension: any[]) => {
+    this.apiService.getScoreDimensionByIdFarm(this.farmId).subscribe((scoreDimension: any[]) => {
       this.scoreDimension = scoreDimension;
       console.log("this.scoreDimension ", this.scoreDimension);
     },
       (error) => console.log("error occured when retreiving score dimension details ", error));
 
-    await this.apiService.getScoreClusterByFarmId(this.farmId).then((scoreCluster: any[]) => {
+    this.apiService.getScoreClusterByFarmId(this.farmId).subscribe((scoreCluster: any[]) => {
       this.scoreClusters = scoreCluster;
       console.log("scoreCluster ", scoreCluster);
     },
       (error) => console.log("error occured when retreiving score dimension details ", error));
 
-    await this.apiService.getClusters().then((clusters: any[]) => {
+    //To BE DELETED
+    this.apiService.getClusters().subscribe((clusters: any[]) => {
       if (clusters) {
-        this.clusters = clusters;
+        this.tempClustersArray = clusters;
         console.log("new clusters ", clusters);
       }
     },
       (error) => console.log("error occured when retreiving score dimension details ", error));
-    let arraytest: any[] = [];
-    this.clusters.forEach(cluter => {
-      this.scoreClusters.forEach(scoreCluster => {
-        if (scoreCluster.clusterRef._id == cluter._id) {
-          arraytest.push({
-            scoreDimension: cluter,
-            cluster: scoreCluster
-          });
-        }
-      })
-    })
-console.log("arraytest ", arraytest);
-    // let arraytest: any[] = [];
-    // this.scoreDimension.forEach(scDim => {
-    //   console.log("scm Dim ", scDim.dimensionId._id);
-    //   this.apiService.getClusterByDimId(scDim.dimensionId._id).subscribe((clusters: any[]) => {
-    //     console.log("for dimension name ", scDim.dimensionId.name, " with id ", scDim.dimensionId._id);
-    //     console.log("clusters ", clusters);
-    //     this.scoreClusters.forEach(scoreCluster => {
-    //       clusters.forEach(cluster => {
-    //         if (scoreCluster.clusterRef._id == cluster._id) {
 
-    //           if (this.clusters.includes({ dimensionId: scDim.dimensionId._id })) {
-    //             arraytest.push({
-    //               dimensionId: scDim.dimensionId._id,
-    //               clusterName: cluster.name,
-    //               clusterScore: scoreCluster.score,
-    //               clusterExplication: cluster.constraints ? cluster.constraints : "//TEST pas de contrainte "
-    //             })
-    //           }
-    //           else {
-    //             arraytest = [];
-    //             arraytest.push({
-    //               dimensionId: scDim.dimensionId._id,
-    //               clusterName: cluster.name,
-    //               clusterScore: scoreCluster.score,
-    //               clusterExplication: cluster.constraints ? cluster.constraints : "//TEST pas de contrainte "
-    //             })
-    //             this.clusters.push({
-    //               dimensionId: scDim.dimensionId._id,
-    //               dimensionName: scDim.dimensionId.name,
-    //               dimensionScore: scDim.score,
-    //               cluster: arraytest
-    //             })
-    //           }
-    //         }
-    //       })
-    //     })
-    //   },
-    //     (error) => console.log("error occured when retreiving score dimension details ", error));
-    // })
-    // console.log("this.scoreTable ", this.clusters);
+    this.scoreDimension.forEach(async scDim => {
+      this.apiService.getClusterByDimId(scDim.dimensionId._id).subscribe((clusters: any[]) => {
+        this.clustersByDimId.push(clusters);
+      },
+        (error) => console.log("error occured when retreiving score dimension details ", error));
+    })
+
   }
 
   ngOnDestroy(): void {
@@ -121,12 +80,45 @@ console.log("arraytest ", arraytest);
   }
 
   onClickDetailScore() {
-    this.clusters = [];
+    let index = 0;
+    let arraytest: any[] = [];
+    console.log("clustersByDimId ", this.clustersByDimId);
+    
+    // clusters.forEach(cluster => {
+    //   if (scoreCluster.clusterRef._id == cluster._id) {
 
-    //602be5a222ca2458b4c16223
+    //     if (this.clusters.includes({ dimensionId: scDim.dimensionId._id })) {
+    //       console.log("in the thing")
+    //       this.clusters.find(element => element.dimensionId == scDim.dimensionId._id);
+    //       console.log("this.clusters.find(element => element.dimensionId == scDim.dimensionId._id) ",
+    //         this.clusters.find(element => element.dimensionId == scDim.dimensionId._id));
+    //       arraytest.push({
+    //         dimensionId: scDim.dimensionId._id,
+    //         clusterName: cluster.name,
+    //         clusterScore: scoreCluster.score,
+    //         clusterExplication: cluster.constraints ? cluster.constraints : "//TEST pas de contrainte "
+    //       })
+    //     }
+    //     else {
+    //       arraytest = [];
+    //       arraytest.push({
+    //         dimensionId: scDim.dimensionId._id,
+    //         clusterName: cluster.name,
+    //         clusterScore: scoreCluster.score,
+    //         clusterExplication: cluster.constraints ? cluster.constraints : "//TEST pas de contrainte "
+    //       })
+    //       this.clusters.push({
+    //         dimensionId: scDim.dimensionId._id,
+    //         dimensionName: scDim.dimensionId.name,
+    //         dimensionScore: scDim.score,
+    //         cluster: arraytest
+    //       })
+    //     }
+    //   }
+    // })
+
     //Trasnvaser le reste
-    console.log("this.scoreTable ", this.clusters);
-
+    console.log("this.clustersArray ", this.clustersArray);
 
   }
 

@@ -75,8 +75,8 @@
             <mat-card-content *ngFor="let dim of scoreDimension">
                 <mat-accordion>
                     <mat-expansion-panel>
-                        <!-- (click)="onClickDetailScore()" -->
-                        <mat-expansion-panel-header>
+                        <!--  -->
+                        <mat-expansion-panel-header (click)="onClickDetailScore()">
                             <mat-panel-title>
                                <span style="color: #F6A030;"> {{dim.dimensionId.name}} </span>
                             </mat-panel-title>

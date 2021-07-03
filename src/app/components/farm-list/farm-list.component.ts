@@ -151,10 +151,8 @@ export class FarmListComponent implements OnInit {
     }
     this.sessionStorage.setItem(Globals.SEARCH_FORM_STATE_KEY, JSON.stringify(this.filterForm.value));
     this.apiService.getFarmsByFilters(toSend).subscribe(farms => {
-      console.log("farms ", farms);
       this.farms = farms;
       this.productions = farms.productions;
-      console.log("this.productions ", farms);
     })
   }
 
@@ -235,9 +233,6 @@ export class FarmListComponent implements OnInit {
   }
 
   goToFarmDetails(id: any) {
-    console.log("value on click ", id);
-    // this.router.navigate(["/ferme"]);
-
     var myurl = `/fermes/${id}`;
     this.router.navigateByUrl(myurl).then(e => {
       if (e) {
