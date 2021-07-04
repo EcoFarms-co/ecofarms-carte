@@ -110,7 +110,7 @@
                 <mat-card-actions>
                     <div>
                         <i class="material-icons">location_on</i>
-                        {{member.localisation}}, {{member.region}} 
+                        {{member.localisation}}, {{member.region}}
                     </div>
                     <div>
                         <img src="assets/sprout2.png" width="20" height="20" />
@@ -122,7 +122,14 @@
             </mat-card>
         </div>
         <div *ngIf="!isChecked" fxFlex="50">
-            <google-map height="800px" width="700px"></google-map>
+            <google-map height="800px" width="700px" [zoom]="zoom"
+            [center]="center">
+
+                <map-marker *ngFor="let marker of markers" [position]="marker.position"
+                    [label]="marker.label" [title]="marker.title" [options]="marker.options">
+                </map-marker>
+
+            </google-map>
         </div>
     </div>
 </form>

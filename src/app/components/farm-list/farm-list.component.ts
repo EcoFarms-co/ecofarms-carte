@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
+import { GoogleMap, MapInfoWindow } from '@angular/google-maps';
 import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -15,6 +16,9 @@ import { ScoreDialogComponent } from 'src/app/shared-components/score-dialog/sco
   styleUrls: ['./farm-list.component.css']
 })
 export class FarmListComponent implements OnInit {
+  // @ViewChild("mapMarker", { static: false }) public mapMarker: any;
+  @ViewChild(GoogleMap, { static: false }) map: GoogleMap
+  @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow
   sessionStorage = sessionStorage;
   //Rajout des chips dans un Set
   keywords = new Set();
@@ -93,6 +97,20 @@ export class FarmListComponent implements OnInit {
 
   isChecked = true;
 
+  //Google Map Attributes
+  zoom = 12
+  center: google.maps.LatLngLiteral
+  options: google.maps.MapOptions = {
+    zoomControl: false,
+    scrollwheel: false,
+    disableDoubleClickZoom: true,
+    mapTypeId: 'hybrid',
+    maxZoom: 15,
+    minZoom: 8,
+  }
+  markers = []
+  infoContent = ''
+
   constructor(private formBuilder: FormBuilder, private apiService: ApiService,
     private sanitizer: DomSanitizer,
     private router: Router,
@@ -108,17 +126,50 @@ export class FarmListComponent implements OnInit {
       score: ['']
     });
     this.reseaux$ = this.apiService.loadReseaux();
+
   }
 
 
 
   ngOnInit(): void {
     if (this.sessionStorage.getItem(Globals.SEARCH_FORM_STATE_KEY)) {
-      this.apiService.getFarmsByFilters(JSON.parse(this.sessionStorage.getItem(Globals.SEARCH_FORM_STATE_KEY))).subscribe((farms: Farm[]) => {
+      this.apiService.getFarmsByFilters(JSON.parse(this.sessionStorage.getItem(Globals.SEARCH_FORM_STATE_KEY)))
+      .subscribe((farms: Farm[]) => {
         this.farms = farms;
       })
     }
     this.handleChipsOnInit();
+    //Google Map
+    this.googleMapGeoLocalisation();
+  }
+
+  private googleMapGeoLocalisation() {
+   navigator.geolocation.getCurrentPosition((position) => {
+      this.center = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+    });
+   
+  }
+
+
+  addMarker() {
+    this.markers.push({
+      position: {
+        lat: this.center.lat + ((Math.random() - 0.5) * 2) / 10,
+        lng: this.center.lng + ((Math.random() - 0.5) * 2) / 10,
+      },
+      label: {
+        color: 'red',
+        text: 'Marker label ' + (this.markers.length + 1),
+      },
+      title: 'Marker title ' + (this.markers.length + 1),
+      info: 'Marker info ' + (this.markers.length + 1),
+      options: {
+        animation: google.maps.Animation.BOUNCE,
+      },
+    })
   }
 
   private handleChipsOnInit() {
@@ -143,6 +194,7 @@ export class FarmListComponent implements OnInit {
   }
 
   onFormSubmit() {
+    this.addMarker();
     let key: any;
     let toSend: any[] = this.filterForm.value;
     for (let key in toSend) {
