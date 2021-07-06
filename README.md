@@ -1,7 +1,7 @@
 # EcoFarms
-Angular 12 CRUD App with Bootstrap 4, MongoDB, NodeJS and Express JS.
+Angular 9 CRUD App with Bootstrap 4, MongoDB, NodeJS and Express JS.
 
-This project was built with Angular CLI version 12
+This project was built with Angular CLI version 9
 
 
 ## How to run the app?
