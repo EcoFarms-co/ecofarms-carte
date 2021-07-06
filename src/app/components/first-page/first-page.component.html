@@ -1,6 +1,6 @@
 <div class="container">
 
-    <div class="center-align" style="margin-top: 50px;">
+    <div style="text-align: center;">
         <img src="/assets/farmer.ice.png" alt="fermier illustration" width="70" />
 
         <h5> <b><span style="color: #F6A030;">La carte </span>EcoFarms </b> </h5>
@@ -10,21 +10,24 @@
         </h5>
         <h6 style="margin-top: 40px;">Où êtes vous ? </h6>
 
-        <form class="example-form">
-            <mat-form-field class="example-full-width">
-                <mat-label>Région</mat-label>
-                <input type="text" placeholder="Veuillez choisir la région souhaité" aria-label="Region" matInput
-                    [formControl]="region" [matAutocomplete]="auto">
-                <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let reg of filteredRegions | async" [value]="reg">
-                        {{reg}}
-                    </mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
-            &nbsp;
-        </form>
-        <button mat-raised-button color="primary" (click)="onFormSubmit()">Rechercher</button>
-
+        <div class="parent">
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                    <div>
+                        <mat-label>Région</mat-label>
+                        <input type="text" placeholder="Veuillez choisir la région souhaité" aria-label="Region"
+                            matInput [formControl]="region" [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let reg of filteredRegions | async" [value]="reg">
+                                {{reg}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </div>
+                </mat-form-field>
+                &nbsp;
+            </form>
+        </div>
+        <button mat-raised-button color="blue" (click)="onFormSubmit()">Rechercher</button>
     </div>
 
     <div class="row" style="margin-top: 80px;">
@@ -55,9 +58,9 @@
 
     </div>
 
-    <div class="center-align" style="margin-top: 80px; margin-bottom:80px">
+    <div class="parent1">
         <img src="/assets/logoRondTransparent.png" alt="ecofarms logo" width="50" />
-        <h5><b> Pourquoi EcoFarms propose cette carte ? <br /></b></h5>
+        <h5><b> Pourquoi EcoFarms propose la carte EcoFarms? <br /></b></h5>
         <p>EcoFarms répond au besoin des <b>agriculteurs d’être mieux valorisés pour leurs engagements</b> et à celui
             des
             <b>consommateurs d’avoir une consommation éclairée et responsable.</b>
@@ -85,11 +88,11 @@
 
 
         </div>
-
-        <a href="https://ecofarms.co/" class="btn waves-effect waves-light green lighten-2"
-            style="border-radius: 22px;">
-            Découvrir EcoFarms
-        </a>
+        <div style="margin-top: 10px;">
+            <button mat-raised-button color="blue" href="https://ecofarms.co/">
+                Découvrir EcoFarms
+            </button>
+        </div>
     </div>
 
 

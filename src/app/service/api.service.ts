@@ -16,7 +16,7 @@ export class ApiService {
 
   // Create
   createEmployee(data): Observable<any> {
-    let url = `/create`;
+    let url = `/api/create`;
     return this.http.post(url, data)
       .pipe(
         catchError(this.errorMgmt)
@@ -30,7 +30,7 @@ export class ApiService {
 
   // Get employee
   getEmployee(id): Observable<any> {
-    let url = `/read/${id}`;
+    let url = `/api/read/${id}`;
     return this.http.get(url, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
@@ -41,7 +41,7 @@ export class ApiService {
 
   // Update employee
   updateEmployee(id, data): Observable<any> {
-    let url = `${this.baseUri}/update/${id}`;
+    let url = `/api/update/${id}`;
     return this.http.put(url, data, { headers: this.headers }).pipe(
       catchError(this.errorMgmt)
     )
@@ -49,7 +49,7 @@ export class ApiService {
 
   // Delete employee
   deleteEmployee(id): Observable<any> {
-    let url = `${this.baseUri}/delete/${id}`;
+    let url = `/api/delete/${id}`;
     return this.http.delete(url, { headers: this.headers }).pipe(
       catchError(this.errorMgmt)
     )
@@ -71,7 +71,7 @@ export class ApiService {
 
 
   getFarmsByRegion(region): Observable<any> {
-    let url = `${this.baseUri}/recherche/regions/${region}`;
+    let url = `/api/recherche/regions/${region}`;
     return this.http.get(url, { headers: this.headers }).pipe(
       catchError(this.errorMgmt)
     )
@@ -81,7 +81,7 @@ export class ApiService {
     // params = params.append('filterValues', filterValues);
     // params = params.append('_limit', 10);
     let params = new HttpParams().set('queryStr', filterValues);
-    let url = `${this.baseUri}/recherche`;
+    let url = `/api/recherche`;
     console.log('filterValues ', filterValues);
     return this.http.get(url, { params: filterValues }).pipe(
       catchError(this.errorMgmt)
@@ -90,7 +90,7 @@ export class ApiService {
 
   getFarmDetails(farmId: any): Observable<any> {
     let params = new HttpParams().set('id', farmId);
-    let url = `${this.baseUri}/farms/${farmId}`;
+    let url = `/api/farms/${farmId}`;
     return this.http.get(url, { params: params }).pipe(
       catchError(this.errorMgmt)
     )
@@ -99,14 +99,14 @@ export class ApiService {
    getScoreDimensionByIdFarm(farmId: any) {
     let params = new HttpParams().set('id', farmId);
 
-    let url = `${this.baseUri}/farm/${farmId}/score-dimensions`;
+    let url = `/api/farm/${farmId}/score-dimensions`;
     return this.http.get(url, { params: params }).pipe(
       catchError(this.errorMgmt));
   }
 
 
   loadReseaux(): Observable<any> {
-    return this.http.get(`${this.baseUri}/reseaux`).pipe(catchError(this.errorMgmt));
+    return this.http.get(`/api/reseaux`).pipe(catchError(this.errorMgmt));
   }
 
   getIPAddress() {
@@ -115,25 +115,25 @@ export class ApiService {
 
   getCheckIpAdressesAndIncrement(farmId: any, ipAdress: any): Observable<any> {
     let params = new HttpParams().set('farmId', farmId).set('ipAdress', ipAdress);
-    return this.http.get(`${this.baseUri}/checkLikeCouterAndIncrement`, { params: params }).pipe(
+    return this.http.get(`/api/checkLikeCouterAndIncrement`, { params: params }).pipe(
       catchError(this.errorMgmt));
   }
 
   getClusterByDimId(dimId: any){
     let params = new HttpParams().set('dimId', dimId);
-    return this.http.get(`${this.baseUri}/clusters/dimension/${dimId}`, { params: params }).pipe(
+    return this.http.get(`/api/clusters/dimension/${dimId}`, { params: params }).pipe(
       catchError(this.errorMgmt));
   }
 
 
   getClusters(){
-    return this.http.get(`${this.baseUri}/clusters`).pipe(
+    return this.http.get(`/api/clusters`).pipe(
       catchError(this.errorMgmt));
   }
 
  getScoreClusterByFarmId(farmId: any){
     let params = new HttpParams().set('dimId', farmId);
-    return this.http.get(`${this.baseUri}/farm/${farmId}/score-clusters/`, { params: params }).pipe(
+    return this.http.get(`/api/farm/${farmId}/score-clusters/`, { params: params }).pipe(
       catchError(this.errorMgmt));
   }
 }

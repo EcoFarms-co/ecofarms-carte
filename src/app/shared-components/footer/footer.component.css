@@ -4,6 +4,14 @@
     background-color: #ee6e73;
   }
   
+  .parent1 {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
   .page-footer .footer-copyright {
     overflow: hidden;
     min-height: 50px;

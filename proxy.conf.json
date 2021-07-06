@@ -1,6 +1,6 @@
 {
-  "/api/*": {
-    "target": "https://ecofarms-france.herokuapp.com/api",
+  "*": {
+    "target": "localhost:3000/",
     "changeOrigin": true,
     "logLevel": "debug"
   }
